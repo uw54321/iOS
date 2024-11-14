@@ -30,59 +30,8 @@
         main {
             flex: 1;
             padding: 20px;
-            margin-left: 80px;
-            transition: margin-left 0.3s;
+            margin-bottom: 40px;
             overflow-x: hidden;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 60px;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.2);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            transition: width 0.3s ease;
-            z-index: 999;
-            padding-top: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar.expanded {
-            width: 200px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-        }
-
-        .sidebar ul li {
-            width: 100%;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 1rem;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .sidebar ul li a:hover,
-        .sidebar ul li a.active {
-            background-color: #4CAF50;
         }
 
         /* Content Styles */
@@ -110,60 +59,72 @@
             margin-top: 10px;
         }
 
-        /* Toast Notification Styles */
-        .toast {
+        /* Sidebar Styles for Bottom Left */
+        .sidebar {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background-color: #4CAF50;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.2);
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
-        /* Responsive Layout */
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
-            main {
-                margin-left: 0;
-            }
-
             .sidebar {
-                width: 100%;
-                height: 50px;
-                flex-direction: row;
-                justify-content: space-around;
+                width: 150px;
+                bottom: 10px;
+                left: 10px;
             }
 
-            .sidebar.expanded {
-                width: 100%;
-                height: 100vh;
-                flex-direction: column;
+            .sidebar ul li a {
+                font-size: 0.9rem;
+                padding: 6px;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="sidebar" id="sidebar">
-    <ul>
-        <li><a href="#introduction" onclick="highlightSection(this)">Introduction</a></li>
-        <li><a href="#info-collect" onclick="highlightSection(this)">Information We Collect</a></li>
-        <li><a href="#info-use" onclick="highlightSection(this)">How We Use Your Information</a></li>
-        <li><a href="#info-share" onclick="highlightSection(this)">Sharing Your Information</a></li>
-        <li><a href="#rights" onclick="highlightSection(this)">Your Rights and Choices</a></li>
-        <li><a href="#contact" onclick="highlightSection(this)">Contact Us</a></li>
-    </ul>
-</div>
+<header>
+    Privacy Policy
+</header>
 
 <main>
-    <header>
-        Privacy Policy
-    </header>
-
     <section id="introduction" class="content">
         <h3>Introduction</h3>
         <p>Your privacy is very important to us. This privacy policy explains how we handle your personal information and the security measures we implement to protect your data.</p>
@@ -195,44 +156,48 @@
     </section>
 </main>
 
-<!-- Toast Notification -->
-<div id="toast" class="toast">Currently viewing: Introduction</div>
+<!-- Sidebar with dynamic highlights -->
+<div class="sidebar">
+    <ul>
+        <li><a href="#introduction" class="section-link">Introduction</a></li>
+        <li><a href="#info-collect" class="section-link">Information We Collect</a></li>
+        <li><a href="#info-use" class="section-link">How We Use Your Information</a></li>
+        <li><a href="#info-share" class="section-link">Sharing Your Information</a></li>
+        <li><a href="#rights" class="section-link">Your Rights and Choices</a></li>
+        <li><a href="#contact" class="section-link">Contact Us</a></li>
+    </ul>
+</div>
 
 <script>
-    // Highlight the active section in the sidebar
-    function highlightSection(link) {
+    // Function to highlight the active section
+    function highlightActiveSection() {
+        const sections = document.querySelectorAll('section');
         const links = document.querySelectorAll('.sidebar ul li a');
-        links.forEach(link => link.classList.remove('active'));
-        link.classList.add('active');
-    }
-
-    // Show toast notification
-    function showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.style.display = 'block';
-        toast.style.opacity = 1;
-        setTimeout(() => {
-            toast.style.opacity = 0;
-            setTimeout(() => toast.style.display = 'none', 500);
-        }, 3000);
-    }
-
-    // Scroll listener to detect the visible section
-    const sections = document.querySelectorAll('section');
-    window.addEventListener('scroll', () => {
+        
+        let currentSection = null;
+        
         sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-                const activeLink = document.querySelector(`.sidebar ul li a[href="#${section.id}"]`);
-                highlightSection(activeLink);
-                showToast(`Currently viewing: ${section.querySelector('h3').textContent}`);
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight) {
+                currentSection = section.id;
             }
         });
-    });
 
-    // Initial Highlight
-    document.querySelector('.sidebar ul li a').classList.add('active');
+        links.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Add event listener for scrolling
+    window.addEventListener('scroll', highlightActiveSection);
+
+    // Call once to highlight the section on page load
+    highlightActiveSection();
 </script>
 
 </body>
