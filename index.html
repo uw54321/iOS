@@ -23,14 +23,14 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         main {
-            max-width: 800px;
+            max-width: 900px; /* Wider width for PC */
             margin: 20px auto;
             padding: 20px;
             background: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             flex: 1;
-            transition: margin-left 0.3s ease; /* Smooth transition for text shifting */
+            transition: margin-left 0.3s ease;
         }
         h1 {
             font-size: 1.8em;
@@ -40,7 +40,7 @@
             font-size: 1.2em;
             cursor: pointer;
             background-color: #e3f2fd;
-            padding: 12px; /* Padding added */
+            padding: 12px;
             margin: 0;
             border-radius: 8px;
             transition: background-color 0.3s;
@@ -70,16 +70,16 @@
             left: 0;
             width: 150px;
             height: 100%;
-            background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background */
+            background-color: rgba(240, 240, 240, 0.8);
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            transform: translateX(-100%); /* Hidden by default - completely off screen */
+            transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
         
         .sidebar.visible {
-            transform: translateX(0); /* Show the sidebar when visible */
+            transform: translateX(0);
         }
         .sidebar h3 {
             font-size: 1.2em;
@@ -122,22 +122,25 @@
         /* Responsive Layout */
         @media (max-width: 600px) {
             .sidebar {
-                position: fixed;
-                width: 70%; /* Reduced width for mobile */
+                width: 50%; /* Mobile: Reduce sidebar width */
             }
             .toggle-btn {
                 display: block;
             }
+            main {
+                margin-left: 0; /* No margin for mobile */
+            }
         }
         @media (min-width: 601px) {
             .toggle-btn {
-                display: none; /* Hide toggle button on desktop */
+                display: none;
             }
             .sidebar {
-                transform: translateX(0); /* Show sidebar by default on larger screens */
+                transform: translateX(0); /* Sidebar visible by default on desktop */
             }
             main {
-                margin-left: 150px; /* Ensure space for the sidebar */
+                margin-left: 200px; /* Adjust margin to fit sidebar */
+                max-width: 900px; /* Center the content on desktop */
             }
         }
     </style>
@@ -207,28 +210,15 @@
 </main>
 
 <script>
-    // Toggle the content of each section when clicking on the header
     function toggleContent(header) {
         const content = header.nextElementSibling;
         content.classList.toggle('collapsed');
     }
 
-    // Toggle the sidebar visibility
     function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('visible');
-        document.querySelector('main').classList.toggle('sidebar-visible'); // Adjust text when sidebar is visible
+        document.querySelector('.sidebar').classList.toggle('visible');
+        document.querySelector('main').classList.toggle('sidebar-visible');
     }
-
-    // Close the sidebar when clicking outside of it
-    document.addEventListener('click', function(event) {
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.toggle-btn');
-        if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target) && sidebar.classList.contains('visible')) {
-            sidebar.classList.remove('visible');
-            document.querySelector('main').classList.remove('sidebar-visible'); // Adjust text when sidebar is closed
-        }
-    });
 </script>
 
 </body>
