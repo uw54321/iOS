@@ -23,15 +23,20 @@
             padding: 20px;
             text-align: center;
             font-size: 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1;
         }
 
         main {
-            flex: 1;
+            margin-top: 100px; /* Adjust for the header */
             padding: 20px;
             margin-bottom: 40px;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Content Styles */
@@ -41,6 +46,7 @@
             margin: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
         }
 
         section {
