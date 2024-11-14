@@ -110,23 +110,19 @@
             margin-top: 10px;
         }
 
-        .toggle-btn {
-            position: absolute;
-            top: 20px;
+        /* Toast Notification Styles */
+        .toast {
+            position: fixed;
+            bottom: 20px;
             left: 20px;
             background-color: #4CAF50;
             color: white;
-            border: none;
-            padding: 15px;
+            padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            font-size: 1.5rem;
-        }
-
-        /* Smooth Scroll */
-        .sidebar ul li a {
-            cursor: pointer;
+            font-size: 1rem;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         /* Responsive Layout */
@@ -147,16 +143,10 @@
                 height: 100vh;
                 flex-direction: column;
             }
-
-            .toggle-btn {
-                display: block;
-            }
         }
     </style>
 </head>
 <body>
-
-<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
 <div class="sidebar" id="sidebar">
     <ul>
@@ -205,13 +195,10 @@
     </section>
 </main>
 
-<script>
-    // Toggle Sidebar Visibility
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('expanded');
-    }
+<!-- Toast Notification -->
+<div id="toast" class="toast">Currently viewing: Introduction</div>
 
+<script>
     // Highlight the active section in the sidebar
     function highlightSection(link) {
         const links = document.querySelectorAll('.sidebar ul li a');
@@ -219,15 +206,33 @@
         link.classList.add('active');
     }
 
-    // Smooth Scroll to Section
-    document.querySelectorAll('.sidebar ul li a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+    // Show toast notification
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.style.display = 'block';
+        toast.style.opacity = 1;
+        setTimeout(() => {
+            toast.style.opacity = 0;
+            setTimeout(() => toast.style.display = 'none', 500);
+        }, 3000);
+    }
+
+    // Scroll listener to detect the visible section
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                const activeLink = document.querySelector(`.sidebar ul li a[href="#${section.id}"]`);
+                highlightSection(activeLink);
+                showToast(`Currently viewing: ${section.querySelector('h3').textContent}`);
+            }
         });
     });
+
+    // Initial Highlight
+    document.querySelector('.sidebar ul li a').classList.add('active');
 </script>
 
 </body>
