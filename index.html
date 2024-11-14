@@ -31,8 +31,18 @@
         h1, h2 {
             color: #333;
         }
+        h2 {
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
         p {
             margin: 10px 0;
+        }
+        .content {
+            display: none; /* Initially collapsed */
+            padding: 0 10px;
         }
 
         /* Responsive Layout */
@@ -51,35 +61,54 @@
 
 <main>
     <section>
-        <h2>Introduction</h2>
-        <p>Your privacy is important to us. This privacy policy explains how we handle your personal data and the measures we take to protect your information.</p>
+        <h2 onclick="toggleContent(this)">Introduction</h2>
+        <div class="content">
+            <p>Your privacy is important to us. This privacy policy explains how we handle your personal data and the measures we take to protect your information.</p>
+        </div>
     </section>
 
     <section>
-        <h2>Information We Collect</h2>
-        <p>Describe the types of data you collect here, such as personal identification information, contact details, and usage data.</p>
+        <h2 onclick="toggleContent(this)">Information We Collect</h2>
+        <div class="content">
+            <p>Describe the types of data you collect here, such as personal identification information, contact details, and usage data.</p>
+        </div>
     </section>
 
     <section>
-        <h2>How We Use Your Information</h2>
-        <p>Explain how the collected information is used, for example, to improve your services, personalize user experience, and communicate with users.</p>
+        <h2 onclick="toggleContent(this)">How We Use Your Information</h2>
+        <div class="content">
+            <p>Explain how the collected information is used, for example, to improve your services, personalize user experience, and communicate with users.</p>
+        </div>
     </section>
 
     <section>
-        <h2>Sharing Your Information</h2>
-        <p>Detail any cases where data might be shared with third parties, including business partners, service providers, or in compliance with legal obligations.</p>
+        <h2 onclick="toggleContent(this)">Sharing Your Information</h2>
+        <div class="content">
+            <p>Detail any cases where data might be shared with third parties, including business partners, service providers, or in compliance with legal obligations.</p>
+        </div>
     </section>
 
     <section>
-        <h2>Your Rights and Choices</h2>
-        <p>Outline the rights users have regarding their data, such as accessing, correcting, or deleting their information, and how they can exercise these rights.</p>
+        <h2 onclick="toggleContent(this)">Your Rights and Choices</h2>
+        <div class="content">
+            <p>Outline the rights users have regarding their data, such as accessing, correcting, or deleting their information, and how they can exercise these rights.</p>
+        </div>
     </section>
 
     <section>
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this privacy policy, you can contact us at <a href="mailto:example@example.com">example@example.com</a>.</p>
+        <h2 onclick="toggleContent(this)">Contact Us</h2>
+        <div class="content">
+            <p>If you have any questions about this privacy policy, you can contact us at <a href="mailto:example@example.com">example@example.com</a>.</p>
+        </div>
     </section>
 </main>
+
+<script>
+    function toggleContent(header) {
+        const content = header.nextElementSibling;
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+    }
+</script>
 
 </body>
 </html>
