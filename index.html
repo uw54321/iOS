@@ -12,36 +12,50 @@
             margin: 0;
             padding: 0;
             color: #333;
-            background-color: #f4f4f9;
+            background-color: #f7f8fa;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #3f51b5;
             color: white;
-            padding: 15px 20px;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         main {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 40px auto;
             padding: 20px;
-            background: #fff;
+            background: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
         }
         h1, h2 {
             color: #333;
+            font-weight: 600;
         }
         h2 {
             cursor: pointer;
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
+            background-color: #e3f2fd;
+            padding: 15px;
+            margin: 0;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        h2:hover {
+            background-color: #bbdefb;
         }
         p {
             margin: 10px 0;
+            padding: 0 10px;
         }
         .content {
-            display: none; /* Initially collapsed */
+            padding: 15px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            max-height: 1000px; /* Opened state */
+        }
+        .collapsed {
+            max-height: 0;
             padding: 0 10px;
         }
 
@@ -106,7 +120,7 @@
 <script>
     function toggleContent(header) {
         const content = header.nextElementSibling;
-        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        content.classList.toggle('collapsed');
     }
 </script>
 
