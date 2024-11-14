@@ -5,63 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
     <style>
-        /* Basic Styles */
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f7fb;
             color: #333;
-            background-color: #f7f8fa;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 1;
             display: flex;
             flex-direction: column;
-        }
-        header {
-            background-color: #3f51b5;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            flex: 1;
-            transition: margin-left 0.3s ease; /* Smooth transition for text shifting */
-        }
-        h1 {
-            font-size: 1.8em;
-            margin: 0;
-        }
-        h2 {
-            font-size: 1.2em;
-            cursor: pointer;
-            background-color: #e3f2fd;
-            padding: 12px; /* Padding added */
-            margin: 0;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-        h2:hover {
-            background-color: #bbdefb;
-        }
-        p {
-            margin: 10px 0;
-            padding: 0 10px;
-        }
-        .content {
-            padding: 10px;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            max-height: 1000px; /* Opened state */
-        }
-        .collapsed {
-            max-height: 0;
-            padding: 0 10px;
+            margin-left: 250px;
+            transition: margin-left 0.3s;
         }
 
         /* Sidebar Styles */
@@ -69,167 +38,182 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 150px;
+            width: 250px;
             height: 100%;
-            background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background */
-            padding-top: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            transform: translateX(-100%); /* Hidden by default - completely off screen */
-            transition: transform 0.3s ease;
-        }
-        
-        .sidebar.visible {
-            transform: translateX(0); /* Show the sidebar when visible */
-        }
-        .sidebar h3 {
-            font-size: 1.2em;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin: 10px 0;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #333;
-            padding: 8px;
-            display: block;
-            border-radius: 5px;
-        }
-        .sidebar ul li a:hover {
             background-color: #3f51b5;
             color: white;
+            padding-top: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Toggle Button */
+        .sidebar.visible {
+            transform: translateX(0);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px;
+            display: block;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Content Styles */
+        .content {
+            background-color: white;
+            padding: 30px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
         .toggle-btn {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
             background-color: #3f51b5;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 1000;
+            z-index: 1001;
+            font-size: 1.5rem;
         }
 
         /* Responsive Layout */
-        @media (max-width: 600px) {
-            .sidebar {
-                position: fixed;
-                width: 30%; /* Reduced width for mobile */
+        @media (max-width: 768px) {
+            main {
+                margin-left: 0;
             }
+
+            .sidebar {
+                width: 200px;
+            }
+
             .toggle-btn {
                 display: block;
-            }
-        }
-        @media (min-width: 601px) {
-            .toggle-btn {
-                display: none; /* Hide toggle button on desktop */
-            }
-            .sidebar {
-                transform: translateX(0); /* Show sidebar by default on larger screens */
-            }
-            main {
-                margin-left: 150px; /* Ensure space for the sidebar */
-                margin-right: 20px; /* Add some margin to the right for balance */
             }
         }
     </style>
 </head>
 <body>
 
-<button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-<div class="sidebar">
-    <h3>Contents</h3>
+<div class="sidebar" id="sidebar">
+    <h2>Contents</h2>
     <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#info-collect">Information We Collect</a></li>
-        <li><a href="#info-use">How We Use Your Information</a></li>
-        <li><a href="#info-share">Sharing Your Information</a></li>
-        <li><a href="#rights">Your Rights and Choices</a></li>
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#introduction" onclick="highlightSection(this)">Introduction</a></li>
+        <li><a href="#info-collect" onclick="highlightSection(this)">Information We Collect</a></li>
+        <li><a href="#info-use" onclick="highlightSection(this)">How We Use Your Information</a></li>
+        <li><a href="#info-share" onclick="highlightSection(this)">Sharing Your Information</a></li>
+        <li><a href="#rights" onclick="highlightSection(this)">Your Rights and Choices</a></li>
+        <li><a href="#contact" onclick="highlightSection(this)">Contact Us</a></li>
     </ul>
 </div>
 
 <main>
     <header>
-        <h1>Privacy Policy</h1>
+        Privacy Policy
     </header>
 
-    <section id="introduction">
-        <h2 onclick="toggleContent(this)">Introduction</h2>
-        <div class="content">
-            <p>Your privacy is important to us. This privacy policy explains how we handle your personal data and the measures we take to protect your information.</p>
-        </div>
+    <section id="introduction" class="content">
+        <h3>Introduction</h3>
+        <p>Your privacy is very important to us. This privacy policy explains how we handle your personal information and the security measures we implement to protect your data.</p>
     </section>
 
-    <section id="info-collect">
-        <h2 onclick="toggleContent(this)">Information We Collect</h2>
-        <div class="content">
-            <p>Describe the types of data you collect here, such as personal identification information, contact details, and usage data.</p>
-        </div>
+    <section id="info-collect" class="content">
+        <h3>Information We Collect</h3>
+        <p>We collect personal identification information such as your name, email address, and usage data. This helps us improve our services and provide a better user experience.</p>
     </section>
 
-    <section id="info-use">
-        <h2 onclick="toggleContent(this)">How We Use Your Information</h2>
-        <div class="content">
-            <p>Explain how the collected information is used, for example, to improve your services, personalize user experience, and communicate with users.</p>
-        </div>
+    <section id="info-use" class="content">
+        <h3>How We Use Your Information</h3>
+        <p>The collected information is used to improve our services, communicate with you, and personalize your experience on our platform.</p>
     </section>
 
-    <section id="info-share">
-        <h2 onclick="toggleContent(this)">Sharing Your Information</h2>
-        <div class="content">
-            <p>Detail any cases where data might be shared with third parties, including business partners, service providers, or in compliance with legal obligations.</p>
-        </div>
+    <section id="info-share" class="content">
+        <h3>Sharing Your Information</h3>
+        <p>We may share your information with third-party services for operational purposes, or when legally required to do so in compliance with relevant laws.</p>
     </section>
 
-    <section id="rights">
-        <h2 onclick="toggleContent(this)">Your Rights and Choices</h2>
-        <div class="content">
-            <p>Outline the rights users have regarding their data, such as accessing, correcting, or deleting their information, and how they can exercise these rights.</p>
-        </div>
+    <section id="rights" class="content">
+        <h3>Your Rights and Choices</h3>
+        <p>You have the right to access, modify, and delete your personal data. You can also manage your preferences regarding the use of your data.</p>
     </section>
 
-    <section id="contact">
-        <h2 onclick="toggleContent(this)">Contact Us</h2>
-        <div class="content">
-            <p>If you have any questions about this privacy policy, you can contact us at <a href="mailto:example@example.com">example@example.com</a>.</p>
-        </div>
+    <section id="contact" class="content">
+        <h3>Contact Us</h3>
+        <p>If you have any questions or concerns about our privacy policy, feel free to reach out to us at <a href="mailto:example@example.com">example@example.com</a>.</p>
     </section>
 </main>
 
 <script>
-    // Toggle the content of each section when clicking on the header
-    function toggleContent(header) {
-        const content = header.nextElementSibling;
-        content.classList.toggle('collapsed');
-    }
-
-    // Toggle the sidebar visibility
+    // Toggle Sidebar Visibility
     function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
+        const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('visible');
-        document.querySelector('main').classList.toggle('sidebar-visible'); // Adjust text when sidebar is visible
     }
 
-    // Close the sidebar when clicking outside of it
-    document.addEventListener('click', function(event) {
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.toggle-btn');
-        if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target) && sidebar.classList.contains('visible')) {
-            sidebar.classList.remove('visible');
-            document.querySelector('main').classList.remove('sidebar-visible'); // Adjust text when sidebar is closed
-        }
+    // Highlight the active section in the sidebar
+    function highlightSection(link) {
+        const links = document.querySelectorAll('.sidebar ul li a');
+        links.forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+    }
+
+    // Smooth Scroll to Section
+    document.querySelectorAll('.sidebar ul li a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
 </script>
 
