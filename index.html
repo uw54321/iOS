@@ -68,7 +68,7 @@
             top: 0;
             left: 0;
             width: 220px;
-            height: 100%;
+            height: 100vh;
             background-color: #f0f0f0;
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -82,6 +82,7 @@
         .sidebar ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
         .sidebar ul li {
             margin: 10px 0;
@@ -98,6 +99,11 @@
             color: white;
         }
 
+        /* Adjust Main Content to Account for Sidebar */
+        main {
+            margin-left: 240px; /* Ensures main content is not hidden by sidebar */
+        }
+
         /* Responsive Layout */
         @media (max-width: 600px) {
             .sidebar {
@@ -107,6 +113,7 @@
                 box-shadow: none;
             }
             main {
+                margin-left: 0;
                 margin: 20px;
             }
         }
