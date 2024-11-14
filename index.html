@@ -13,30 +13,33 @@
             padding: 0;
             color: #333;
             background-color: #f7f8fa;
+            display: flex;
         }
         header {
             background-color: #3f51b5;
             color: white;
-            padding: 20px;
+            padding: 10px 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         main {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 20px;
             background: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            flex: 1;
         }
-        h1, h2 {
-            color: #333;
-            font-weight: 600;
+        h1 {
+            font-size: 1.8em;
+            margin: 0;
         }
         h2 {
+            font-size: 1.2em;
             cursor: pointer;
             background-color: #e3f2fd;
-            padding: 15px;
+            padding: 10px;
             margin: 0;
             border-radius: 8px;
             transition: background-color 0.3s;
@@ -49,7 +52,7 @@
             padding: 0 10px;
         }
         .content {
-            padding: 15px;
+            padding: 10px;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
             max-height: 1000px; /* Opened state */
@@ -59,57 +62,111 @@
             padding: 0 10px;
         }
 
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100%;
+            background-color: #f0f0f0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        .sidebar h3 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px;
+            display: block;
+            border-radius: 5px;
+        }
+        .sidebar ul li a:hover {
+            background-color: #3f51b5;
+            color: white;
+        }
+
         /* Responsive Layout */
         @media (max-width: 600px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+            }
             main {
-                padding: 15px;
+                margin: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Privacy Policy</h1>
-</header>
+<div class="sidebar">
+    <h3>Contents</h3>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#info-collect">Information We Collect</a></li>
+        <li><a href="#info-use">How We Use Your Information</a></li>
+        <li><a href="#info-share">Sharing Your Information</a></li>
+        <li><a href="#rights">Your Rights and Choices</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+    </ul>
+</div>
 
 <main>
-    <section>
+    <header>
+        <h1>Privacy Policy</h1>
+    </header>
+
+    <section id="introduction">
         <h2 onclick="toggleContent(this)">Introduction</h2>
         <div class="content">
             <p>Your privacy is important to us. This privacy policy explains how we handle your personal data and the measures we take to protect your information.</p>
         </div>
     </section>
 
-    <section>
+    <section id="info-collect">
         <h2 onclick="toggleContent(this)">Information We Collect</h2>
         <div class="content">
             <p>Describe the types of data you collect here, such as personal identification information, contact details, and usage data.</p>
         </div>
     </section>
 
-    <section>
+    <section id="info-use">
         <h2 onclick="toggleContent(this)">How We Use Your Information</h2>
         <div class="content">
             <p>Explain how the collected information is used, for example, to improve your services, personalize user experience, and communicate with users.</p>
         </div>
     </section>
 
-    <section>
+    <section id="info-share">
         <h2 onclick="toggleContent(this)">Sharing Your Information</h2>
         <div class="content">
             <p>Detail any cases where data might be shared with third parties, including business partners, service providers, or in compliance with legal obligations.</p>
         </div>
     </section>
 
-    <section>
+    <section id="rights">
         <h2 onclick="toggleContent(this)">Your Rights and Choices</h2>
         <div class="content">
             <p>Outline the rights users have regarding their data, such as accessing, correcting, or deleting their information, and how they can exercise these rights.</p>
         </div>
     </section>
 
-    <section>
+    <section id="contact">
         <h2 onclick="toggleContent(this)">Contact Us</h2>
         <div class="content">
             <p>If you have any questions about this privacy policy, you can contact us at <a href="mailto:example@example.com">example@example.com</a>.</p>
