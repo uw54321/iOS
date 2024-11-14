@@ -39,7 +39,7 @@
             font-size: 1.2em;
             cursor: pointer;
             background-color: #e3f2fd;
-            padding: 10px;
+            padding: 12px; /* Padding added */
             margin: 0;
             border-radius: 8px;
             transition: background-color 0.3s;
@@ -68,11 +68,16 @@
             top: 0;
             left: 0;
             width: 220px;
-            height: 100vh;
+            height: 100%;
             background-color: #f0f0f0;
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            transform: translateX(-250px); /* Hidden by default */
+            transition: transform 0.3s ease;
+        }
+        .sidebar.visible {
+            transform: translateX(0);
         }
         .sidebar h3 {
             font-size: 1.2em;
@@ -82,7 +87,6 @@
         .sidebar ul {
             list-style-type: none;
             padding: 0;
-            margin: 0;
         }
         .sidebar ul li {
             margin: 10px 0;
@@ -99,27 +103,43 @@
             color: white;
         }
 
-        /* Adjust Main Content to Account for Sidebar */
-        main {
-            margin-left: 240px; /* Ensures main content is not hidden by sidebar */
+        /* Toggle Button */
+        .toggle-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
         }
 
         /* Responsive Layout */
         @media (max-width: 600px) {
             .sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-                box-shadow: none;
+                position: fixed;
+                width: 70%; /* Reduced width for mobile */
             }
-            main {
-                margin-left: 0;
-                margin: 20px;
+            .toggle-btn {
+                display: block;
+            }
+        }
+        @media (min-width: 601px) {
+            .toggle-btn {
+                display: none; /* Hide toggle button on desktop */
+            }
+            .sidebar {
+                transform: translateX(0); /* Show sidebar by default on larger screens */
             }
         }
     </style>
 </head>
 <body>
+
+<button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
 
 <div class="sidebar">
     <h3>Contents</h3>
@@ -185,6 +205,10 @@
     function toggleContent(header) {
         const content = header.nextElementSibling;
         content.classList.toggle('collapsed');
+    }
+
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('visible');
     }
 </script>
 
