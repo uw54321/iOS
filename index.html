@@ -207,15 +207,28 @@
 </main>
 
 <script>
+    // Toggle the content of each section when clicking on the header
     function toggleContent(header) {
         const content = header.nextElementSibling;
         content.classList.toggle('collapsed');
     }
 
+    // Toggle the sidebar visibility
     function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('visible');
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('visible');
         document.querySelector('main').classList.toggle('sidebar-visible'); // Adjust text when sidebar is visible
     }
+
+    // Close the sidebar when clicking outside of it
+    document.addEventListener('click', function(event) {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-btn');
+        if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target) && sidebar.classList.contains('visible')) {
+            sidebar.classList.remove('visible');
+            document.querySelector('main').classList.remove('sidebar-visible'); // Adjust text when sidebar is closed
+        }
+    });
 </script>
 
 </body>
