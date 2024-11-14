@@ -30,6 +30,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             flex: 1;
+            transition: margin-left 0.3s ease; /* Smooth transition for text shifting */
         }
         h1 {
             font-size: 1.8em;
@@ -67,13 +68,13 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 220px;
+            width: 180px; /* Reduced width */
             height: 100%;
             background-color: #f0f0f0;
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            transform: translateX(-250px); /* Hidden by default */
+            transform: translateX(-200px); /* Hidden by default */
             transition: transform 0.3s ease;
         }
         .sidebar.visible {
@@ -133,6 +134,9 @@
             }
             .sidebar {
                 transform: translateX(0); /* Show sidebar by default on larger screens */
+            }
+            main {
+                margin-left: 180px; /* Ensure space for the sidebar */
             }
         }
     </style>
@@ -209,6 +213,7 @@
 
     function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('visible');
+        document.querySelector('main').classList.toggle('sidebar-visible'); // Adjust text when sidebar is visible
     }
 </script>
 
