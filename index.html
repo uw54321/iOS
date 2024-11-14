@@ -70,15 +70,16 @@
             left: 0;
             width: 150px; /* Reduced width */
             height: 100%;
-            background-color: #f0f0f0;
+            background-color: rgba(240, 240, 240, 0.8); /* Semi-transparent background */
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            transform: translateX(-180px); /* Hidden by default */
+            transform: translateX(-100%); /* Hidden by default - completely off screen */
             transition: transform 0.3s ease;
         }
+        
         .sidebar.visible {
-            transform: translateX(0);
+            transform: translateX(0); /* Show the sidebar when visible */
         }
         .sidebar h3 {
             font-size: 1.2em;
