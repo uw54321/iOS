@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
     <style>
-        /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -23,19 +22,18 @@
             padding: 20px;
             text-align: center;
             font-size: 2rem;
-            margin-top: 0; /* Removed space below the title */
             font-weight: bold;
+            margin-bottom: 0;
         }
 
         main {
             flex: 1;
             padding: 20px;
-            margin-top: 40px; /* space for title */
+            margin-top: 0;
             overflow-x: hidden;
-            padding-bottom: 50vh; /* Increased space at the bottom of the page (half of the screen height) */
+            padding-bottom: 50vh;
         }
 
-        /* Content Styles */
         .content {
             background-color: white;
             padding: 30px;
@@ -62,7 +60,6 @@
             margin-top: 10px;
         }
 
-        /* Sidebar Styles for Bottom Left */
         .sidebar {
             position: fixed;
             bottom: 20px;
@@ -106,7 +103,6 @@
             background-color: #4CAF50;
         }
 
-        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             .sidebar {
                 width: 150px;
@@ -159,7 +155,6 @@
     </section>
 </main>
 
-<!-- Sidebar with dynamic highlights -->
 <div class="sidebar">
     <ul>
         <li><a href="#introduction" class="section-link">Introduction</a></li>
@@ -172,7 +167,6 @@
 </div>
 
 <script>
-    // Function to highlight the active section
     function highlightActiveSection() {
         const sections = document.querySelectorAll('section');
         const links = document.querySelectorAll('.sidebar ul li a');
@@ -196,10 +190,7 @@
         });
     }
 
-    // Add event listener for scrolling
     window.addEventListener('scroll', highlightActiveSection);
-
-    // Call once to highlight the section on page load
     highlightActiveSection();
 </script>
 
