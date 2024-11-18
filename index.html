@@ -60,70 +60,45 @@
             margin-top: 10px;
         }
 
-         .sidebar {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 120px; /* サイドバーの幅を小さく */
-            background-color: rgba(0, 0, 0, 0.8); /* 背景を濃くして視認性向上 */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 8px; /* 全体のパディングを小さく */
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
+    .sidebar {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 120px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
     
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
+    .sidebar ul li a {
+        font-size: 0.75rem;
+        padding: 4px;
+        transition: background-color 0.3s ease;
+    }
     
-        .sidebar ul li {
-            width: 100%;
-            margin: 5px 0; /* マージンを小さく */
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+        background-color: #4CAF50;
+    }
+    
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100px;
+            bottom: 5px;
+            right: 5px;
         }
     
         .sidebar ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 0.8rem; /* フォントサイズを小さく */
-            display: block;
-            padding: 4px; /* パディングを小さく */
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            text-align: center; /* テキストを中央揃え */
+            font-size: 0.65rem;
+            padding: 3px;
         }
-    
-        .sidebar ul li a:hover,
-        .sidebar ul li a.active {
-            background-color: #4CAF50;
-        }
-
-        footer {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-            padding: 10px;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 150px;
-                bottom: 10px;
-                left: 10px;
-            }
-
-            .sidebar ul li a {
-                font-size: 0.9rem;
-                padding: 6px;
-            }
-        }
+    }
     </style>
 </head>
 <body>
