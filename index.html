@@ -198,17 +198,17 @@
         let currentSection = null;
         
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
+            const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
             
-            if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight) {
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSection = section.id;
             }
         });
 
         links.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === #${currentSection}) {
+            if (link.getAttribute('href') === `#${currentSection}`) {
                 link.classList.add('active');
             }
         });
