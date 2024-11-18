@@ -60,44 +60,45 @@
             margin-top: 10px;
         }
 
-        .sidebar {
+         .sidebar {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 200px;
-            background-color: rgba(0, 0, 0, 0.2);
+            bottom: 10px;
+            right: 10px;
+            width: 120px; /* サイドバーの幅を小さく */
+            background-color: rgba(0, 0, 0, 0.8); /* 背景を濃くして視認性向上 */
             color: white;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 10px;
+            padding: 8px; /* 全体のパディングを小さく */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
-
+    
         .sidebar ul {
             list-style: none;
             padding: 0;
             margin: 0;
             width: 100%;
         }
-
+    
         .sidebar ul li {
             width: 100%;
-            margin: 10px 0;
+            margin: 5px 0; /* マージンを小さく */
         }
-
+    
         .sidebar ul li a {
             text-decoration: none;
             color: white;
-            font-size: 1rem;
+            font-size: 0.8rem; /* フォントサイズを小さく */
             display: block;
-            padding: 8px;
+            padding: 4px; /* パディングを小さく */
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            text-align: center; /* テキストを中央揃え */
         }
-
+    
         .sidebar ul li a:hover,
         .sidebar ul li a.active {
             background-color: #4CAF50;
